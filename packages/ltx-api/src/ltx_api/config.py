@@ -2,7 +2,14 @@ import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 from ltx_core.quantization import QuantizationPolicy
+
+_env_path = Path(".env")
+if not _env_path.exists():
+    _env_path = Path(__file__).resolve().parent.parent.parent.parent / ".env"
+load_dotenv(_env_path)
 
 
 @dataclass(frozen=True)

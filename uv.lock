@@ -1925,6 +1925,7 @@ dependencies = [
     { name = "aiofiles" },
     { name = "fastapi" },
     { name = "ltx-pipelines" },
+    { name = "python-dotenv" },
     { name = "python-multipart" },
     { name = "uvicorn", extra = ["standard"] },
 ]
@@ -1934,6 +1935,7 @@ requires-dist = [
     { name = "aiofiles", specifier = ">=24.1.0" },
     { name = "fastapi", specifier = ">=0.115.0" },
     { name = "ltx-pipelines", editable = "packages/ltx-pipelines" },
+    { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "python-multipart", specifier = ">=0.0.18" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.34.0" },
 ]
