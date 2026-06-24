@@ -77,6 +77,7 @@ class PipelineManager:
                 crf=img.crf,
             )
             for img in images
+            if img.path and img.path != "string" and Path(img.path).exists()
         ]
 
     def generate(
