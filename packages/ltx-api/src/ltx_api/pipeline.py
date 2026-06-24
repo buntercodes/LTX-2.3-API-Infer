@@ -80,6 +80,7 @@ class PipelineManager:
             if img.path and img.path != "string" and Path(img.path).exists()
         ]
 
+    @torch.inference_mode()
     def generate(
         self,
         request: GenerateRequest,
