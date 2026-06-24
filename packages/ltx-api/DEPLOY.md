@@ -83,7 +83,27 @@ You should see output showing your GPU model, driver version, and CUDA version (
 
 ---
 
-## 4. Download Model Weights
+## 4. Application Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/buntercodes/LTX-2.3-API-Infer.git /home/ubuntu/ltx-api
+cd /home/ubuntu/ltx-api
+
+# Install uv (fast Python package manager)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source ~/.bashrc
+
+# Create virtual environment and sync dependencies
+uv sync --frozen
+
+# Verify the installation
+uv run python -c "from ltx_pipelines.distilled import DistilledPipeline; print('OK')"
+```
+
+---
+
+## 5. Download Model Weights
 
 All weights are hosted on [HuggingFace — Lightricks/LTX-2.3](https://huggingface.co/Lightricks/LTX-2.3).
 
@@ -125,26 +145,6 @@ huggingface-cli download google/gemma-3-12b-it-qat-q4_0-unquantized \
 > ```bash
 > huggingface-cli login
 > ```
-
----
-
-## 5. Application Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/buntercodes/LTX-2.3-API-Infer.git /home/ubuntu/ltx-api
-cd /home/ubuntu/ltx-api
-
-# Install uv (fast Python package manager)
-curl -LsSf https://astral.sh/uv/install.sh | sh
-source ~/.bashrc
-
-# Create virtual environment and sync dependencies
-uv sync --frozen
-
-# Verify the installation
-uv run python -c "from ltx_pipelines.distilled import DistilledPipeline; print('OK')"
-```
 
 ---
 
