@@ -1,8 +1,6 @@
 import torch
 
 from ltx_core.loader.primitives import LoraStateDictWithStrength, StateDict
-from ltx_core.quantization.fp8_cast import calculate_weight_float8
-from ltx_core.quantization.fp8_scaled_mm import quantize_weight_to_fp8_per_tensor
 
 
 def apply_loras(
@@ -123,6 +121,8 @@ def _fuse_delta_with_scaled_fp8(
 
     new_weight = original_weight + deltas.to(torch.float32)
 
+    from ltx_core.quantization.fp8_scaled_mm import quantize_weight_to_fp8_per_tensor
+
     new_fp8_weight, new_weight_scale = quantize_weight_to_fp8_per_tensor(new_weight)
     return {key: new_fp8_weight, scale_key: new_weight_scale}
 
@@ -136,6 +136,8 @@ def _fuse_delta_with_cast_fp8(
 ) -> dict[str, torch.Tensor]:
     """Fuse LoRA delta with cast-only FP8 weight (no scale factor)."""
     if str(device).startswith("cuda"):
+        from ltx_core.quantization.fp8_cast import calculate_weight_float8
+
         deltas = calculate_weight_float8(deltas, weight)
     else:
         deltas.add_(weight.to(dtype=deltas.dtype, device=device))
