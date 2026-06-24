@@ -205,9 +205,9 @@ cat /home/ubuntu/ltx-api/.env
 Confirm every path points to an actual file or directory:
 
 ```bash
-ls -lh "$LTX_DISTILLED_CHECKPOINT_PATH"
-ls -lh "$LTX_SPATIAL_UPSAMPLER_PATH"
-ls -d "$LTX_GEMMA_ROOT"
+ls -lh /models/ltx-2.3/ltx-2.3-22b-distilled.safetensors
+ls -lh /models/ltx-2.3/ltx-2.3-spatial-upscaler-x2-1.0.safetensors
+ls -d /models/gemma-3-12b-it-qat-q4_0-unquantized
 ```
 
 ---
