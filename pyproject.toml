@@ -1,6 +1,7 @@
 [tool.uv.sources]
 ltx-core = { workspace = true }
 ltx-pipelines = { workspace = true }
+ltx-api = { workspace = true }
 
 [tool.uv.workspace]
 members = ["packages/*"]
@@ -14,6 +15,7 @@ dev = [
     "pre-commit>=4.3.0",
     "ruff>=0.14.3",
     "pytest~=9.0",
+    "ltx-api",
 ]
 
 [tool.ruff]

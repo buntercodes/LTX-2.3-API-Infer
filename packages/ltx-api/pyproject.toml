@@ -1,0 +1,17 @@
+[project]
+name = "ltx-api"
+version = "1.0.0"
+description = "FastAPI inference server for Lightricks' LTX-2 DistilledPipeline"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "ltx-pipelines",
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.34.0",
+    "python-multipart>=0.0.18",
+    "aiofiles>=24.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
