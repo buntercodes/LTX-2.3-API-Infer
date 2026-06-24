@@ -132,7 +132,7 @@ huggingface-cli download google/gemma-3-12b-it-qat-q4_0-unquantized \
 
 ```bash
 # Clone the repository
-git clone https://github.com/Lightricks/LTX-2.git /home/ubuntu/ltx-api
+git clone https://github.com/buntercodes/LTX-2.3-API-Infer.git /home/ubuntu/ltx-api
 cd /home/ubuntu/ltx-api
 
 # Install uv (fast Python package manager)
