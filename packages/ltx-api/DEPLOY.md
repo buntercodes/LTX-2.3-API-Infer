@@ -150,36 +150,64 @@ huggingface-cli download google/gemma-3-12b-it-qat-q4_0-unquantized \
 
 ## 6. Configuration
 
-Set environment variables. Create a file `/home/ubuntu/ltx-api/.env`:
+Create the `.env` file with all required settings, then create the output directory.
+
+### Step 1 — Create the output directory
 
 ```bash
-cat > /home/ubuntu/ltx-api/.env << 'EOF'
-# Model paths
+mkdir -p /home/ubuntu/ltx-api/output
+```
+
+### Step 2 — Create the .env file
+
+```bash
+nano /home/ubuntu/ltx-api/.env
+```
+
+### Step 3 — Fill the .env file with the values below
+
+Paste this content, then adjust any paths that differ on your instance:
+
+```bash
+# ---- REQUIRED: Model paths ----
+# Point each path to the files you downloaded in step 5
+
 LTX_DISTILLED_CHECKPOINT_PATH=/models/ltx-2.3/ltx-2.3-22b-distilled.safetensors
 LTX_SPATIAL_UPSAMPLER_PATH=/models/ltx-2.3/ltx-2.3-spatial-upscaler-x2-1.0.safetensors
 LTX_GEMMA_ROOT=/models/gemma-3-12b-it-qat-q4_0-unquantized
 
-# Optional LoRAs (comma-separated paths)
+# ---- OPTIONAL: LoRAs ----
+# Leave empty if you don't use LoRAs. Otherwise list comma-separated paths.
 LTX_LORA_PATHS=
 LTX_LORA_STRENGTHS=
 
-# Quantization: set to "fp8-cast" for 24 GB GPUs, leave empty for bf16
+# ---- OPTIONAL: Quantization ----
+# Choices: "" (bf16, default), "fp8-cast" (24 GB GPUs), "fp8-scaled-mm" (Hopper GPUs)
 LTX_QUANTIZATION=fp8-cast
 
-# Server
+# ---- Server ----
 LTX_API_HOST=0.0.0.0
 LTX_API_PORT=8000
 
-# Output storage
+# ---- Output storage ----
 LTX_OUTPUT_DIR=/home/ubuntu/ltx-api/output
 LTX_MAX_OUTPUT_AGE_HOURS=24
-EOF
 ```
 
-Make sure the output directory exists:
+Save the file (`Ctrl+O`, then `Ctrl+X` in nano).
+
+### Step 4 — Verify the .env file
 
 ```bash
-mkdir -p /home/ubuntu/ltx-api/output
+cat /home/ubuntu/ltx-api/.env
+```
+
+Confirm every path points to an actual file or directory:
+
+```bash
+ls -lh "$LTX_DISTILLED_CHECKPOINT_PATH"
+ls -lh "$LTX_SPATIAL_UPSAMPLER_PATH"
+ls -d "$LTX_GEMMA_ROOT"
 ```
 
 ---
